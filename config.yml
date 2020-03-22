@@ -33,7 +33,6 @@ disable-help-command: false
 use-potions: true
 effect: confusion
 time: 120
-sound: blaze
 
 ###
 # Customize your plugins

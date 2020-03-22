@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -207,23 +206,6 @@ public class HideAndCustomPlugins extends JavaPlugin implements Listener {
 						player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, getConfig().getInt("time") * 20, 1));
 					} else {
 						if ((getConfig().getString("effect").equals(null)) || (getConfig().getString("effect").equalsIgnoreCase("none"))) {
-							return;
-						}
-					}
-
-					if ((getConfig().getString("sound").equalsIgnoreCase("endermen")) && (getConfig().getString("sound").equalsIgnoreCase("enderman"))) {
-						player.playSound(player.getLocation(), Sound.ENTITY_ENDERMEN_SCREAM, 2.0 F, 1.0 F);
-					} else if (getConfig().getString("sound").equalsIgnoreCase("blaze")) {
-						player.playSound(player.getLocation(), Sound.ENTITY_BLAZE_DEATH, 2.0 F, 1.0 F);
-					} else if (getConfig().getString("sound").equalsIgnoreCase("enderdragon")) {
-						player.playSound(player.getLocation(), Sound.ENTITY_ENDERDRAGON_DEATH, 2.0 F, 1.0 F);
-					} else if (getConfig().getString("sound").equalsIgnoreCase("ghast")) {
-						player.playSound(player.getLocation(), Sound.ENTITY_GHAST_DEATH, 2.0 F, 1.0 F);
-					} else if (getConfig().getString("sound").equalsIgnoreCase("guardian")) {
-						player.playSound(player.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_DEATH, 2.0 F, 1.0 F);
-
-					} else {
-						if ((getConfig().getString("sound").equals(null)) || (getConfig().getString("sound").equalsIgnoreCase("none"))) {
 							return;
 						}
 					}
