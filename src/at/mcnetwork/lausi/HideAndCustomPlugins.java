@@ -51,14 +51,7 @@ public class HideAndCustomPlugins extends JavaPlugin implements Listener {
 		final List<String> hiddenCommands = new ArrayList<String> ();
 		hiddenCommands.add("all");
 
-		try {
-			Metrics metrics = new Metrics(this);
-			metrics.start();
-			Logger.getLogger("Minecraft").info("[" + name + "] Version: " + version + " Metrics started: http://mcstats.org/plugin/HideAndCustomPlugins");
-			bstats bstats = new bstats(this);
-			Logger.getLogger("Minecraft").info("[" + name + "] Version: " + version + " Metrics started: https://bstats.org/plugin/bukkit/HideandCustomPlugins");
-		} catch (IOException e) {
-			System.out.println("Error Submitting stats!");
+		{
 			loadConfig();
 			Bukkit.getServer().getPluginManager().registerEvents(this, this);
 
