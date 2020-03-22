@@ -61,34 +61,36 @@ public class HideAndCustomPlugins extends JavaPlugin implements Listener {
 			}) {
 				@SuppressWarnings("rawtypes")
 				public void onPacketReceiving(PacketEvent event) {
-					if ((event.getPacketType() == PacketType.Play.Client.TAB_COMPLETE) &&
-						(!event.getPlayer().hasPermission("hideandcustomplugins.bypass")) &&
-						(((String) event.getPacket().getStrings().read(0)).startsWith("/")) &&
-						(((String) event.getPacket().getStrings().read(0)).split(" ").length == 1)) {
+					try {
+						if ((event.getPacketType() == PacketType.Play.Client.TAB_COMPLETE) &&
+							(!event.getPlayer().hasPermission("hideandcustomplugins.bypass")) &&
+							(((String) event.getPacket().getStrings().read(0)).startsWith("/")) &&
+							(((String) event.getPacket().getStrings().read(0)).split(" ").length == 1)) {
 
-						event.setCancelled(true);
+							event.setCancelled(true);
 
-						List<? > list = new ArrayList();
-						List<? > extra = new ArrayList();
+							List<? > list = new ArrayList();
+							List<? > extra = new ArrayList();
 
-						String[] tabList = new String[list.size() + extra.size()];
+							String[] tabList = new String[list.size() + extra.size()];
 
-						for (int index = 0; index<list.size(); index++) {
-							tabList[index] = ((String) list.get(index));
+							for (int index = 0; index<list.size(); index++) {
+								tabList[index] = ((String) list.get(index));
+							}
+
+							for (int index = 0; index<extra.size(); index++) {
+								tabList[(index + list.size())] = ('/' + (String) extra.get(index));
+							}
+							PacketContainer tabComplete = manager.createPacket(PacketType.Play.Server.TAB_COMPLETE);
+							tabComplete.getStringArrays().write(0, tabList);
+
+							try {
+								manager.sendServerPacket(event.getPlayer(), tabComplete);
+							} catch (InvocationTargetException e) {
+								e.printStackTrace();
+							}
 						}
-
-						for (int index = 0; index<extra.size(); index++) {
-							tabList[(index + list.size())] = ('/' + (String) extra.get(index));
-						}
-						PacketContainer tabComplete = manager.createPacket(PacketType.Play.Server.TAB_COMPLETE);
-						tabComplete.getStringArrays().write(0, tabList);
-
-						try {
-							manager.sendServerPacket(event.getPlayer(), tabComplete);
-						} catch (InvocationTargetException e) {
-							e.printStackTrace();
-						}
-					}
+					} catch (com.comphenix.protocol.reflect.FieldAccessException e) {}
 				}
 
 			});
