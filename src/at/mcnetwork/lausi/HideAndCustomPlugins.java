@@ -55,14 +55,6 @@ public class HideAndCustomPlugins extends JavaPlugin implements Listener {
 			loadConfig();
 			Bukkit.getServer().getPluginManager().registerEvents(this, this);
 
-			if (getConfig().getBoolean("update-notification")) {
-				try {
-					new Updater(this, 80016, "http://dev.bukkit.org/bukkit-plugins/hideandcustomplugins/", "SearchForUpdates").search();
-				} catch (MalformedURLException e1) {
-					e1.printStackTrace();
-				}
-			}
-
 			final ProtocolManager manager = ProtocolLibrary.getProtocolManager();
 			manager.addPacketListener(new PacketAdapter(this, new PacketType[] {
 				PacketType.Play.Client.TAB_COMPLETE
@@ -212,18 +204,6 @@ public class HideAndCustomPlugins extends JavaPlugin implements Listener {
 					event.setCancelled(true);
 					p.sendMessage(getConfig().getString("error-message").replaceAll("&", "§"));
 				}
-			}
-		}
-	}
-
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onJoin(PlayerJoinEvent event) {
-		Player player = event.getPlayer();
-		if ((getConfig().getBoolean("HideAndCustomPlugins.updateNotification")) && (player.hasPermission("hideandcustomplugins.bypass"))) {
-			try {
-				new Updater(this, 80016, "http://dev.bukkit.org/bukkit-plugins/hideandcustomplugins/", "SearchForUpdates").search(player);
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
 			}
 		}
 	}

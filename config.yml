@@ -8,14 +8,6 @@
 ###
 
 ###
-# What type of Updater, if any, we should choose.
-#
-# true: Only check if there is a new version available, notify appropriate people.
-# false: Ignore Updater altogether.
-###
-update-notification: true
-
-###
 # Silently disable Helpmessage without displaying messages.
 #
 # This takes a value of either "true" or "false"
