@@ -1,7 +1,8 @@
 name: HideAndCustomPlugins
 main: at.mcnetwork.lausi.HideAndCustomPlugins
 depend: [ProtocolLib]
-version: 1.8.1
+version: ${project.version}
+api-version: ${spigot.api.version}
 author: LauseggerDevelopment
 website: http://dev.bukkit.org/bukkit-plugins/hideandcustomplugins/
 commands:
